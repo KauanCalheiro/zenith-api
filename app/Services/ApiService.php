@@ -85,8 +85,12 @@ class ApiService
      *
      * @date 2024-06-12
      */
-    private static function isValidHttpCode(int $code): bool
+    private static function isValidHttpCode(?int $code): bool
     {
+        if (empty($code))
+        {
+            return false;
+        }
         return $code >= 100 && $code <= 599;
     }
 }
