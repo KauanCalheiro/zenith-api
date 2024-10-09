@@ -16,6 +16,7 @@ Route::get('/info', function () {
     phpinfo();
 });
 
-Route::post('/login', [PessoaController::class, 'login']);
+Route::post('/login' , [PessoaController::class, 'login' ]);
+Route::post('/logout', [PessoaController::class, 'logout']);
 
 Route::resource('modulo', ModuloController::class)->only(DEFAULT_METHODS);
