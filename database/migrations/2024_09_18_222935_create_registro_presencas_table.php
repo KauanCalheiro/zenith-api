@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registro_presencas', function (Blueprint $table) {
             $table->id();
             $table->string('dt_entrada', 45);
-            $table->foreignId('ref_pessoa')->constrained('pessoas')->onDelete('cascade');
+            $table->foreignId('ref_pessoa')->constrained('pessoas');
             $table->timestamps();
         });
 

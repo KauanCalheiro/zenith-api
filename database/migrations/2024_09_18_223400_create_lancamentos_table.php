@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('lancamentos', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao', 45);
             $table->double('valor');
-            $table->foreignId('ref_titulo')->constrained('titulos')->onDelete('cascade');
-            $table->timestamp('dt_lancamento');
+            $table->string('descricao', 45);
+            $table->foreignId('ref_titulo')->constrained('titulos');
+            $table->foreignId('ref_historico')->constrained('historicos');
+            $table->date('dt_emissao');
+            $table->date('dt_contabil');
             $table->timestamps();
         });
 
         Schema::table('lancamentos', function (Blueprint $table) {
             $table->index('ref_titulo');
+            $table->index('ref_historico');
         });
     }
 

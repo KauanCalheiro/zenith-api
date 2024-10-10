@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('titulos', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao', 45);
             $table->double('valor');
             $table->date('dt_vencimento');
+            $table->integer('num_parcela');
+            $table->date('dt_emissao');
+            $table->string('cod_boleto', 45);
+            $table->string('cod_barras', 45);
+            $table->date('dt_remessa')->nullable();
+            $table->date('dt_retorno')->nullable();
             $table->foreignId('ref_contrato')->constrained('contratos')->onDelete('cascade');
             $table->timestamps();
         });

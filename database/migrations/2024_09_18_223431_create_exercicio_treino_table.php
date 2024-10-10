@@ -12,11 +12,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('exercicio_treino', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('ref_exercicio')->constrained('exercicios')->onDelete('cascade');
             $table->foreignId('ref_treino')->constrained('treinos')->onDelete('cascade');
-            $table->integer('repeticoes')->nullable();
+            $table->integer('num_series')->nullable();
+            $table->integer('num_repeticoes')->nullable();
+            $table->integer('carga')->nullable();
+            $table->integer('observacao')->nullable();
             $table->timestamps();
-            $table->primary(['ref_exercicio', 'ref_treino']);
         });
 
         Schema::table('exercicio_treino', function (Blueprint $table) {

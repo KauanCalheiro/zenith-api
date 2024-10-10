@@ -12,12 +12,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('treino_pessoa', function (Blueprint $table) {
-            $table->foreignId('ref_pessoa')->constrained('pessoas')->onDelete('cascade');
-            $table->foreignId('ref_treino')->constrained('treinos')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('ref_pessoa')->constrained('pessoas');
+            $table->foreignId('ref_treino')->constrained('treinos');
             $table->date('dt_inicial');
             $table->date('dt_final')->nullable();
             $table->timestamps();
-            $table->primary(['ref_pessoa', 'ref_treino']);
         });
 
         Schema::table('treino_pessoa', function (Blueprint $table) {

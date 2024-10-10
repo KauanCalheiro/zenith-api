@@ -13,16 +13,26 @@ return new class extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->string('numero', 45);
-            $table->string('status', 45);
-            $table->foreignId('ref_pessoa')->constrained('pessoas')->onDelete('cascade');
-            $table->timestamp('dt_inicio');
-            $table->timestamp('dt_fim')->nullable();
+            $table->timestamp('dt_contratacao');
+            $table->timestamp('dt_final')->nullable();
+            $table->foreignId('ref_pessoa')->constrained('pessoas');
+            $table->foreignId('ref_plano')->constrained('planos');
+            $table->foreignId('ref_motivo_cancelamento')->constrained('motivos_cancelamento')->nullable();
+            $table->timestamps('dt_suspensao')->nullable();
+            $table->integer('meses_suspensao')->nullable();
+            $table->foreignId('ref_pessoa_indicacao')->constrained('pessoas')->nullable();
+            $table->string('caminho_contrato')->nullable();
+            $table->foreignId('ref_forma_pagamento')->constrained('formas_pagamento');
+            $table->integer('numero_parcelas_pagamento')->nullable();
             $table->timestamps();
         });
 
         Schema::table('contratos', function (Blueprint $table) {
             $table->index('ref_pessoa');
+            $table->index('ref_plano');
+            $table->index('ref_motivo_cancelamento');
+            $table->index('ref_pessoa_indicacao');
+            $table->index('ref_forma_pagamento');
         });
     }
 

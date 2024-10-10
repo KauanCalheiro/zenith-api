@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ref_pessoa')->constrained('pessoas')->onDelete('cascade');
-            $table->foreignId('ref_ocorrencia_aula')->constrained('ocorrencias_aula')->onDelete('cascade');
+            $table->foreignId('ref_pessoa')->constrained('pessoas');
+            $table->foreignId('ref_ocorrencia_aula')->constrained('ocorrencias_aula');
             $table->timestamps();
         });
 

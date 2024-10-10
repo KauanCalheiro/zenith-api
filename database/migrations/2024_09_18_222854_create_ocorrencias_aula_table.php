@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('ocorrencias_aula', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ref_aula')->constrained('aulas')->onDelete('cascade');
+            $table->foreignId('ref_aula')->constrained('aulas');
             $table->integer('vagas')->nullable();
             $table->string('dia_semana', 45)->nullable();
             $table->timestamp('horario_inicial')->nullable();

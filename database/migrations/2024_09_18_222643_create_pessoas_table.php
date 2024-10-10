@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('pessoas', function (Blueprint $table) {
             $table->id();
-            // $table->string('name');
             $table->text('nome');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            // $table->timestamps();
             $table->date('dt_nascimento');
             $table->string('cpf', 11);
-            // $table->string('email', 45);
             $table->text('endereco');
             $table->string('telefone', 11);
             $table->string('genero', 45)->nullable();
