@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nome', 45);
             $table->string('video')->nullable();
             $table->text('descricao')->nullable();
+            $table->text('grupo_muscular')->nullable();
             $table->timestamps();
         });
     }
