@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('dt_contratacao');
-            $table->timestamp('dt_final')->nullable();
             $table->foreignId('ref_pessoa')->constrained('pessoas');
             $table->foreignId('ref_plano')->constrained('planos');
             $table->foreignId('ref_motivo_cancelamento')->constrained('motivos_cancelamento')->nullable();
-            $table->timestamps('dt_suspensao')->nullable();
-            $table->integer('meses_suspensao')->nullable();
             $table->foreignId('ref_pessoa_indicacao')->constrained('pessoas')->nullable();
-            $table->string('caminho_contrato')->nullable();
             $table->foreignId('ref_forma_pagamento')->constrained('formas_pagamento');
+            $table->timestamp('dt_contratacao');
+            $table->timestamp('dt_final')->nullable();
+            $table->timestamp('dt_suspensao')->nullable();
+            $table->integer('meses_suspensao')->nullable();
+            $table->string('caminho_contrato')->nullable();
             $table->integer('numero_parcelas_pagamento')->nullable();
             $table->timestamps();
         });
