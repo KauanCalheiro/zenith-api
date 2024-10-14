@@ -11,6 +11,16 @@ class ExercicioTreino extends Model
 
     protected $table = 'exercicio_treino';
 
+    protected $fillable = [
+        "ref_exercicio",
+        "ref_treino",
+        "grupo",
+        "num_series",
+        "num_repeticoes",
+        "carga",
+        "observacao",
+    ];
+
     protected $with = [
         'exercicio',
     ];
