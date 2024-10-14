@@ -264,22 +264,28 @@ abstract class Controller
 
             foreach ($request->query() as $key => $value)
             {
-                if (!in_array($key, $modelColumns) || empty($value))
-                {
+                $valueIsJson = is_array(json_decode(urldecode($value), true)) && (json_last_error() == JSON_ERROR_NONE); 
+
+                if($valueIsJson){
+                    $hasRelation = method_exists($model, $key);
+                    if ($hasRelation) {
+                        $value = json_decode(urldecode($value), true);
+                        $builder->with([$key => function($query) use ($value) {
+                            foreach ($value as $key => $val) {
+                                $query->where($key, $val);
+                            }
+                        }]);
+                    }
                     continue;
                 }
-
-                if (is_numeric($value))
-                {
-                    $builder->where($key, $value);
-                }
-                elseif (is_string($value))
-                {
-                    $builder->where($key, 'ilike', "%$value%");
-                }
-                else
-                {
-                    $builder->where($key, $value);
+                elseif (in_array($key, $modelColumns) && !empty($value)) {
+                    if (is_numeric($value)) {
+                        $builder->where($key, $value);
+                    } elseif (is_string($value)) {
+                        $builder->where($key, 'ilike', "%$value%");
+                    } else {
+                        $builder->where($key, $value);
+                    }
                 }
             }
         }
