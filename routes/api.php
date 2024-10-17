@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExercicioTreinoController;
 use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\TreinoController;
@@ -22,5 +23,6 @@ Route::post('/logout', [PessoaController::class, 'logout']);
 
 Route::resource('modulo', ModuloController::class)->only(DEFAULT_METHODS);
 Route::resource('treino', TreinoController::class)->only(DEFAULT_METHODS);
+Route::resource('exercicio_treino', ExercicioTreinoController::class)->only(DEFAULT_METHODS);
 
 Route::get('/usuario/{ref_pessoa}/treino', [TreinoController::class, 'getTreinoByPessoa']);
