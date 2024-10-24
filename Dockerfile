@@ -5,6 +5,8 @@ WORKDIR /var/www/html
 COPY . .
 COPY ./apache.conf /etc/apache2/sites-available/000-default.conf
 
+RUN chmod -R 777 /var/www/html
+
 RUN apt-get update && apt-get install -y \
     libpq-dev \
     curl \
